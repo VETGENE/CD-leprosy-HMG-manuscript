@@ -1,0 +1,18 @@
+Tool: meta (https://mathgen.stats.ox.ac.uk/genetics_software/meta/meta.html)
+
+1) Disease specific meta-analysis
+1-1. CD
+./meta --cohort cohort1_summary_statistics.txt cohort2_summary_statistics.txt --method 1 --threshold 0.8 --snptest --output CD_meta_out.txt
+cat CD_meta_out.txt | awk '$6 < 0.05 && $11 > 0.05 && $13 >0 && $18 >0 {print}' > CD_meta_out_common_0.05.txt
+
+1-2. Leprosy
+./meta --cohort cohort4_summary_statistics.txt cohort5_summary_statistics.txt --method 1 --threshold 0.8 --snptest --output Leprosy_meta_out.txt
+cat Leprosy_meta_out.txt | awk '$6 < 0.05 && $11 > 0.05 && $13 >0 && $18 >0 {print}' > Leprosy_meta_out_common_0.05.txt
+
+2) Directional meta-analysis for associations in the same direction
+./meta --cohort cohort1_summary_statistics.txt cohort2_summary_statistics.txt cohort4_summary_statistics.txt cohort5_summary_statistics.txt --method 1 --threshold 0.8 --snptest --output meta_same_direction_out.txt
+cat meta_same_direction_out.txt | awk '$6 < 1E-06 && $13 >0 && $18 >0 && $23>0 && $28>0 {print}' > meta_same_direction_out_common_1E-06.txt
+
+3) Opposite allelic effect analysis for associations in the opposite direction
+./meta --cohort cohort1_summary_statistics_flipped_beta.txt cohort2_summary_statistics_flipped_beta.txt cohort4_summary_statistics.txt cohort5_summary_statistics.txt --method 1 --threshold 0.8 --snptest --output meta_opposite_direction_out.txt
+cat meta_opposite_direction_out.txt | awk '$6 < 1E-06 && $13 >0 && $18 >0 && $23>0 && $28>0 {print}' > meta_opposite_direction_out_common_1E-06.txt
