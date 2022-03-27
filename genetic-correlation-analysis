@@ -1,0 +1,16 @@
+Tool: LDSC v1.0.0 (https://github.com/bulik/ldsc)
+
+1) Input data
+
+SNP: rs number
+A1: Allele 1 (effect allele)
+A2: Allele 2 (non-effect allele)
+N: Sample size (which often varies from SNP to SNP)
+P: P-value
+beta: A signed summary statistic (beta)
+
+2) run genetic correlation analysis
+python2 munge_sumstats.py --sumstats input1.txt --out ldsc_input1
+python2 munge_sumstats.py --sumstats input2.txt --out ldsc_input2
+
+python2 ldsc.py --rg ldsc_input1.sumstats.gz,ldsc_input2.sumstats.gz --ref-ld-chr ldsc-master/eas_ldscores/ --w-ld-chr ldsc-master/eas_ldscores/ --out ldsc_input1_input2_rg
