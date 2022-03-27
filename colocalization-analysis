@@ -1,0 +1,32 @@
+Tool: coloc (https://github.com/cran/coloc)
+
+1) Input file format
+
+pvalues
+P-values for each SNP in dataset
+
+N
+Number of samples in dataset
+
+MAF
+minor allele frequency of the variants
+
+beta
+regression coefficient for each SNP from dataset
+
+varbeta
+variance of beta
+
+type
+the type of data in dataset 1 - either "quant" or "cc" to denote quantitative or case-control
+
+s
+for a case control dataset, the proportion of samples in dataset 1 that are cases
+
+snp
+SNP rsid.
+
+2) run coloc
+
+R --slave --vanilla --args Input1.txt Input2.txt < COLOC.R
+
