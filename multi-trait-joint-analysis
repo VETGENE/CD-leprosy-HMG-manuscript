@@ -1,0 +1,35 @@
+Tool: PLEIO (https://github.com/cuelee/pleio)
+Input data: summary statistics of disease-specific meta-analysis
+
+1) ldsc_preprocess
+
+1-1) input_list.txt
+FILE    TYPE    SPREV   PPREV   NAME
+CD_meta_common_het.out   binary  0.268377     0.00011    CD
+Leprosy_meta_common_het.out       binary    0.428745     0.00010     Leprosy
+
+mkdir output
+
+./ldsc_preprocess \
+ --input input_list.txt \
+ --ref-ld-chr eas_w_ld_chr/ \
+ --w-ld-chr eas_w_ld_chr/ \
+ --out output
+
+2) run PLEIO
+
+./pleio \
+--metain input.txt.gz \
+--sg output/sg.txt.gz \
+--ce output/re.txt.gz \
+--nis 100000 \
+--parallel \
+--create \
+--out output
+
+Example of input.txt)
+SNP         CD_meta_beta   CD_meta_se   Leprosy_meta_beta   Leprosy_meta_se    
+rs123123   0.000998255   0.0045451   -0.00368294   0.0094183  
+rs456456  0.000632379   0.0045451   0.001246537   0.0094184   
+rs789789   -0.00181131   0.0045451   -0.00546776   0.0094184  
+
