@@ -1,0 +1,15 @@
+Tool: MAGMA (https://ctg.cncr.nl/software/magma)
+
+1) Download MAGMA, gene location file, and reference data from ctg.cncr.nl/software/magma
+MAGMA: linux version 1.07b
+gene location file: Gene locations, build 37
+reference data: East Asian (g1000_eas.bed, g1000_eas.bim, g1000_eas.fam)
+
+
+2) Input data
+SNP: rsid
+P: P value from association test
+
+3) Run gene annotation
+./magma --annotate --snp-loc g1000_eas_snp_loc.txt --gene-loc NCBI37.3.gene.location --out NCBI37.3.gene.annot
+./magma --bfile g1000_eas --pval input_data.txt N=(number of total samples) --gene-annot NCBI37.3.gene.annot.genes.annot --out gene_annot
